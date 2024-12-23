@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administração - Liberar Roleta</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 18px;
+            color: #fff;
+            background: #28a745;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+        .btn:hover {
+            background: #218838;
+        }
+        .status {
+            text-align: center;
+            font-size: 18px;
+            color: #555;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Administração da Roleta</h1>
+        <button class="btn" onclick="liberarRoleta()">Liberar Roleta para o Próximo Participante</button>
+        <div class="status" id="status"></div>
+    </div>
+    <script>
+        // Função para liberar a roleta
+        function liberarRoleta() {
+            // Marca no localStorage que a roleta está liberada
+            localStorage.setItem("roletaLiberada", "true");
+            atualizarStatus();
+            alert("Roleta liberada para o próximo participante!");
+        }
+
+        // Função para atualizar o status da roleta
+        function atualizarStatus() {
+            const statusDiv = document.getElementById("status");
+            const roletaLiberada = localStorage.getItem("roletaLiberada") === "true";
+            if (roletaLiberada) {
+                statusDiv.innerHTML = "A roleta está liberada para o próximo participante.";
+            } else {
+                statusDiv.innerHTML = "A roleta está atualmente bloqueada.";
+            }
+        }
+
+        // Atualiza o status ao carregar a página
+        atualizarStatus();
+    </script>
+</body>
+</html>
